@@ -8,6 +8,11 @@ SSHD_FILE=/etc/ssh/sshd_config
 SUDOERS_FILE=/etc/sudoers
   
 # 0. update package lists
+sudo cp /etc/apt/sources.list /etc/apt/sources.list.backup
+sudo sed -i "s@http://.*archive.ubuntu.com@https://mirrors.tuna.tsinghua.edu.cn@g" /etc/apt/sources.list
+sudo sed -i "s@http://.*security.ubuntu.com@https://mirrors.tuna.tsinghua.edu.cn@g" /etc/apt/sources.list
+sudo apt update
+sudo apt upgrade
 sudo apt-get update
 
 # 0.1. reinstall sshd (workaround for initial version of WSL)
@@ -15,7 +20,7 @@ sudo apt remove -y --purge openssh-server
 sudo apt install -y openssh-server
 
 # 0.2. install basic dependencies
-sudo apt install -y cmake ninja-build gcc clang gdb valgrind build-essential
+sudo apt install -y cmake gcc clang gdb build-essential
 
 # 1.1. configure sshd
 sudo cp $SSHD_FILE ${SSHD_FILE}.`date '+%Y-%m-%d_%H-%M-%S'`.back
