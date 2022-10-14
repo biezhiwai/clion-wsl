@@ -21,6 +21,7 @@ sudo apt install -y openssh-server
 
 # 0.2. install basic dependencies
 sudo apt install -y cmake gcc clang gdb build-essential
+sudo apt-get install libnuma-dev
 
 # 1.1. configure sshd
 sudo cp $SSHD_FILE ${SSHD_FILE}.`date '+%Y-%m-%d_%H-%M-%S'`.back
