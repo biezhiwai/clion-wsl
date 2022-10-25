@@ -1,3 +1,4 @@
+#!/bin/bash
 SUDOERS_FILE=/etc/sudoers
 SYSCTL_FILE=/etc/sysctl.conf
 REDIS_VERSION=7.0.5
