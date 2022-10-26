@@ -10,6 +10,7 @@ sudo sysctl vm.overcommit_memory=1
 
 # 配置大内存页面
 sudo cat << 'EOF' >> ~/.bashrc
+sudo sysctl vm.overcommit_memory=1
 if test -f /sys/kernel/mm/transparent_hugepage/enabled; then
 sudo echo never | sudo tee /sys/kernel/mm/transparent_hugepage/enabled
 fi
