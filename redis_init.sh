@@ -24,6 +24,7 @@ cd ~
 mkdir redis && cd redis
 mkdir bin conf data run log tls
 
+cd ~
 wget http://download.redis.io/releases/redis-${REDIS_VERSION}.tar.gz
 tar -xzvf redis-${REDIS_VERSION}.tar.gz
 cd redis-${REDIS_VERSION}
