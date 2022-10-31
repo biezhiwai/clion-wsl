@@ -50,8 +50,8 @@ sudo ldconfig
 # bind 0.0.0.0 #主机 IP
 # protected-mode no #保护模式设成 no
 # port 6379 #Redis 端口
-# pidfile "/home/xiangsl/redis/run/redis_6379.pid" #进程文件
-# logfile "/home/xiangsl/redis/log/redis_6379.log" #日志文件
+# pidfile "/home/cxk/redis/run/redis_6379.pid" #进程文件
+# logfile "/home/cxk/redis/log/redis_6379.log" #日志文件
 # daemonize yes #守护模式
 # save 3600 1 #rdb 配置
 # save 300 100
@@ -60,6 +60,6 @@ sudo ldconfig
 # appendonly no #aof 配置
 # appendfilename "appendonly_6379.aof" #aof 文件
 # appenddirname "appendonlydir_6379" #aof 文件夹
-# dir "/home/xiangsl/redis/data" #数据文件目录
+# dir "/home/cxk/redis/data" #数据文件目录
 # cluster-enabled no #非集群模式
 # cluster-config-file nodes-6379.conf #集群配置文件
