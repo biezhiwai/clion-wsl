@@ -45,6 +45,16 @@ sudo make install
 sudo echo "/usr/local/lib" | sudo tee -a $LIB_FILE
 sudo ldconfig
 
+# 安装redis++
+cd ~
+git clone https://github.com/sewenew/redis-plus-plus.git
+cd redis-plus-plus
+mkdir build && cd build
+cmake ..
+make
+make install
+
+
 # 然后修改redis.conf完成配置
 # ----------------参考配置----------------
 # bind 0.0.0.0 #主机 IP
