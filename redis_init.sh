@@ -30,6 +30,9 @@ cd redis-${REDIS_VERSION}
 make -j 2
 make install PREFIX=~/redis
 cp redis-${REDIS_VERSION}/redis.conf redis/conf/
+sudo cat << 'EOF' >> ~/.bashrc
+export PATH="~/redis/bin:$PATH"
+EOF
 
 # 然后修改redis.conf完成配置
 # ----------------参考配置----------------
