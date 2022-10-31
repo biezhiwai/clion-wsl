@@ -2,6 +2,7 @@
 set -e
 SUDOERS_FILE=/etc/sudoers
 SYSCTL_FILE=/etc/sysctl.conf
+LIB_FILE=/etc/ld.so.conf
 REDIS_VERSION=7.0.5
 
 # 内核允许超量使用内存直到用完为止
@@ -34,6 +35,15 @@ cp ~/redis-${REDIS_VERSION}/redis.conf ~/redis/conf/
 sudo cat << 'EOF' >> ~/.bashrc
 export PATH="~/redis/bin:$PATH"
 EOF
+
+# 安装hiredis
+cd ~
+git clone https://github.com/redis/hiredis.git
+cd ~/hireis
+make
+sudo make install
+sudo echo "/usr/local/lib" | sudo tee -a $LIB_FILE
+sudo ldconfig
 
 # 然后修改redis.conf完成配置
 # ----------------参考配置----------------
