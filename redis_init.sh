@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 SUDOERS_FILE=/etc/sudoers
 SYSCTL_FILE=/etc/sysctl.conf
 REDIS_VERSION=7.0.5
@@ -26,10 +27,10 @@ mkdir bin conf data run log tls
 cd ~
 wget http://download.redis.io/releases/redis-${REDIS_VERSION}.tar.gz
 tar -xzvf redis-${REDIS_VERSION}.tar.gz
-cd redis-${REDIS_VERSION}
+cd ~/redis-${REDIS_VERSION}
 make -j 2
 make install PREFIX=~/redis
-cp redis-${REDIS_VERSION}/redis.conf redis/conf/
+cp ~/redis-${REDIS_VERSION}/redis.conf ~/redis/conf/
 sudo cat << 'EOF' >> ~/.bashrc
 export PATH="~/redis/bin:$PATH"
 EOF
