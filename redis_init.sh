@@ -2,26 +2,25 @@
 set -e
 SUDOERS_FILE=/etc/sudoers
 SYSCTL_FILE=/etc/sysctl.conf
-LIB_FILE=/etc/ld.so.conf
 REDIS_VERSION=7.0.5
 # 安装路径前缀，默认/usr/local/。若指定则需要手动链接。
 # INSTALL_PREFIX= 
 
 # 内核允许超量使用内存直到用完为止
-sudo echo "%sudo ALL=(ALL) NOPASSWD:ALL" | sudo tee -a $SUDOERS_FILE
-sudo echo "vm.overcommit_memory = 1" | sudo tee -a $SYSCTL_FILE
+echo "%sudo ALL=(ALL) NOPASSWD:ALL" | sudo tee -a $SUDOERS_FILE
+echo "vm.overcommit_memory = 1" | sudo tee -a $SYSCTL_FILE
 sudo sysctl vm.overcommit_memory=1
 
 # 配置大内存页面
-sudo cat << 'EOF' >> ~/.bashrc
+cat << 'EOF' >> ~/.bashrc
 sudo sysctl vm.overcommit_memory=1
 if test -f /sys/kernel/mm/transparent_hugepage/enabled; then
-sudo echo never | sudo tee /sys/kernel/mm/transparent_hugepage/enabled
+echo never | sudo tee /sys/kernel/mm/transparent_hugepage/enabled
 fi
 EOF
 
 # 关闭内存交换空间
-swapoff -a
+sudo swapoff -a
 
 # 安装redis
 cd ~
@@ -34,7 +33,7 @@ cd ~/redis-${REDIS_VERSION}
 make -j 2
 make install PREFIX=~/redis
 cp ~/redis-${REDIS_VERSION}/redis.conf ~/redis/conf/
-sudo cat << 'EOF' >> ~/.bashrc
+cat << 'EOF' >> ~/.bashrc
 export PATH="~/redis/bin:$PATH"
 EOF
 
@@ -44,17 +43,17 @@ git clone https://github.com/redis/hiredis.git
 cd ~/hireis
 make
 sudo make install
-sudo echo "/usr/local/lib" | sudo tee -a $LIB_FILE
+echo "/usr/local/lib" | sudo tee -a /etc/ld.so.conf.d/usr-libs.conf
 sudo ldconfig
 
 # 安装redis++
 cd ~
 git clone https://github.com/sewenew/redis-plus-plus.git
-cd redis-plus-plus
+cd ~/redis-plus-plus
 mkdir build && cd build
 cmake ..
 make
-make install
+sudo make install
 
 
 # 然后修改redis.conf完成配置
