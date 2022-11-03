@@ -38,9 +38,9 @@ echo "PasswordAuthentication yes" | sudo tee -a $SSHD_FILE
 sudo service ssh --full-restart
   
 # 2. autostart: run sshd 
-sudo sed -i '/^sudo service ssh --full-restart/ d' ~/.bashrc
+sed -i '/^sudo service ssh --full-restart/ d' ~/.bashrc
 echo "%sudo ALL=(ALL) NOPASSWD: /usr/sbin/service ssh --full-restart" | sudo tee -a $SUDOERS_FILE
-sudo cat << 'EOF' >> ~/.bashrc
+cat << 'EOF' >> ~/.bashrc
 sshd_status=$(service ssh status)
 if [[ $sshd_status = *"is not running"* ]]; then
   sudo service ssh --full-restart
