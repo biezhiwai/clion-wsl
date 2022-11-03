@@ -4,6 +4,8 @@ SUDOERS_FILE=/etc/sudoers
 SYSCTL_FILE=/etc/sysctl.conf
 LIB_FILE=/etc/ld.so.conf
 REDIS_VERSION=7.0.5
+# 安装路径前缀，默认/usr/local/。若指定则需要手动链接。
+# INSTALL_PREFIX= 
 
 # 内核允许超量使用内存直到用完为止
 sudo echo "%sudo ALL=(ALL) NOPASSWD:ALL" | sudo tee -a $SUDOERS_FILE
