@@ -74,3 +74,10 @@ sudo make install
 # dir "/home/cxk/redis/data" #数据文件目录
 # cluster-enabled no #非集群模式
 # cluster-config-file nodes-6379.conf #集群配置文件
+
+# 离线安装模板
+# PACKAGE_NAME=
+# cd $PACKAGE_NAME
+# ./configure --prefix=$INSTALL_PREFIX
+# make
+# make install
